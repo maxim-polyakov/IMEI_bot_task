@@ -10,8 +10,9 @@ class TestCase_API_package(ITestCase.ITestCase):
     """
     __im = Imei.Imei()
     def test_imei(self):
-        res = self.__im.get_imei()
-        pass
+        imei = 'imei'
+        res = self.__im.get_imei_info(imei=imei)
+        self.assertNotEqual(res, None)
 
 if __name__ == '__main__':
     unittest.main()

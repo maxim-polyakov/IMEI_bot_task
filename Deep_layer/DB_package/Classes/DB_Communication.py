@@ -15,7 +15,7 @@ class DB_Communication(IDB_Communication.IDB_Communication):
     @classmethod
     def get_data(cls, select):
 #
-#       Its a method for getting data to a database
+#       Its a method for getting data from a database
         logging.basicConfig(level=logging.INFO, filename="imei.log", filemode="w")
         try:
             postgr_conn = Connections.PostgresConnection()
@@ -29,7 +29,7 @@ class DB_Communication(IDB_Communication.IDB_Communication):
     @classmethod
     def checkcvalidimei(cls, input_string):
 #
-#       Its a method for checking of commands in a database
+#       Its a method for checking of imei in a database
         logging.basicConfig(level=logging.INFO, filename="imei.log", filemode="w")
         try:
             postgr_conn = Connections.PostgresConnection()
@@ -40,9 +40,31 @@ class DB_Communication(IDB_Communication.IDB_Communication):
             for cdictvalue in Cdict.values():
                 for item in input_array:
                     if(cdictvalue == item):
-                        logging.info('The db_communication.checkcommands is done')
+                        logging.info('The db_communication.checkcvalidimei is done')
                         return True
-            logging.info('The db_communication.checkcommands is done')
+            logging.info('The db_communication.checkcvalidimei is done')
             return False
         except Exception as e:
-            logging.exception(str('The exception is in db_communication.checkcommands ' + str(e)))
+            logging.exception(str('The exception is in db_communication.checkcvalidimei ' + str(e)))
+
+
+    @classmethod
+    def checkuser(cls, input_string):
+#
+#       Its a method for checking of users in a database
+        logging.basicConfig(level=logging.INFO, filename="imei.log", filemode="w")
+        try:
+            postgr_conn = Connections.PostgresConnection()
+            df = pd.read_sql('SELECT userr FROM assistant_sets.white_list_of_users', postgr_conn.conn_remote)
+            Cdict = df['userr'].to_dict()
+
+            input_array = input_string.split(' ')
+            for cdictvalue in Cdict.values():
+                for item in input_array:
+                    if (cdictvalue == item):
+                        logging.info('The db_communication.checkcommands is done')
+                        return True
+            logging.info('The db_communication.checkuser is done')
+            return False
+        except Exception as e:
+            logging.exception(str('The exception is in db_communication.checkuser ' + str(e)))
