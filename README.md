@@ -1,5 +1,3 @@
-![plot](https://github.com/maxim-polyakov/Misa_bot/blob/main/House.jpg)
-
 # The_Imei_bot
 
 ТЗ Телеграм бот IMEI
