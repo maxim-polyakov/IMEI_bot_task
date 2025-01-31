@@ -11,5 +11,5 @@ class IDB_Communication(ABC):
         pass
 
     @abstractmethod
-    def checkcvalidimei(cls):
+    def check(cls):
         pass

@@ -8,4 +8,4 @@ class User(IUser.IUser):
     @classmethod
     def check(cls, user):
 
-        return cls.__dbc.checkuser(user)
+        return cls.__dbc.check(column='userr',table='white_list_of_users',input_string=user)

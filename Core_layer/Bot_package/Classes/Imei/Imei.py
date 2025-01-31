@@ -18,6 +18,6 @@ class Imei(IImei.IImei):
 
     @classmethod
     def get_imei(cls):
-        if(cls.__dbc.checkcvalidimei(cls.text)):
+        if(cls.__dbc.check(column='text',table='validimei', input_string=cls.text)):
             res = cls.__im.get_imei_info(cls.text)
             return res
